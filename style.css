@@ -1,0 +1,266 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(#fff0f5, #ffe6eb);
+  color: #5a2a3c;
+  overflow-x: hidden;
+}
+
+.hero {
+  height: 100vh;
+  text-align: center;
+  padding-top: 30vh;
+}
+
+.hero h1 {
+  font-size: 3em;
+}
+
+.scroll-hint {
+  font-size: 2em;
+  animation: bounce 1.5s infinite;
+}
+
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: auto;
+  padding: 50px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background: #f3a6c8;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  width: 50%;
+  padding: 30px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+.timeline-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item.left {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-item.right {
+  left: 50%;
+}
+
+.content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.photo-frame {
+  margin-top: 15px;
+  padding: 10px;
+  background: #ffe6ef;
+  border-radius: 15px;
+  position: relative;
+  overflow: visible;
+}
+
+.photo-frame img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.4s ease;
+}
+
+.photo-frame img:hover {
+  transform: scale(1.05);
+}
+
+.photo-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.photo-group img:only-child {
+  width: 100%;
+}
+
+.photo-group img:hover {
+  transform: scale(1.05);
+}
+
+.ending-card::before {
+  content: "💖";
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5em;
+  animation: pulse 2s infinite;
+}
+
+.ending {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.ending h2 {
+  font-size: 2.5em;
+}
+
+#heart-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+  filter: blur(1px);
+
+}
+
+body > *:not(#heart-container) {
+  position: relative;
+  z-index: 2;
+}
+
+
+.floating-heart {
+  position: absolute;
+  bottom: -30px;
+  font-size: 20px;
+  opacity: 0;
+  animation: floatUp 8s linear forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.25;
+  }
+  80% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: translateY(-120vh) scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh); }
+  100% { transform: translateY(-200px); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 60px;
+    text-align: left;
+  }
+
+  .timeline-item.right {
+    left: 0;
+  }
+}
+
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  z-index: 2;
+  animation: sparkle 3s ease-in-out forwards;
+  pointer-events: none;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+
+@keyframes sparkle {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-10px) scale(1);
+    opacity: 0;
+  }
+}
+
+.hover-heart {
+  position: absolute;
+  font-size: 16px;
+  pointer-events: none;
+  animation: popHeart 1.2s ease-out forwards;
+}
+
+@keyframes popHeart {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-30px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.1); }
+}
+
+#typewriter-text::after {
+  content: "|";
+  margin-left: 4px;
+  color: #e75480;
+  animation: blink 1s infinite;
+}
+
+#typewriter-text.done::after {
+  content: "";
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
